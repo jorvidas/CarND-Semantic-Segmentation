@@ -121,7 +121,7 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
         batch = 0
         for (image, label) in batches:
             batch += 1
-            _, loss = sess.run([train_op, cross_entropy_loss], feed_dict={input_image: image, correct_label: label, learning_rate:1e-3, keep_prob:0.75})
+            _, loss = sess.run([train_op, cross_entropy_loss], feed_dict={input_image: image, correct_label: label, learning_rate:1e-3, keep_prob:0.50})
             print("Epoch: ", epoch,", Batch: ", batch, " Loss: ", loss)
     
     pass
@@ -152,8 +152,8 @@ def run():
         #  https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
 
 #         # TODO: Build NN using load_vgg, layers, and optimize function
-        epochs = 2
-        batch_size = 4
+        epochs = 25
+        batch_size = 8
         learning_rate = tf.placeholder(tf.float32)
         correct_label = tf.placeholder(tf.int32, [None, None, None, num_classes])
         # input_image = tf.placeholder(tf.float32, image_shape)
@@ -180,4 +180,5 @@ def run():
 
 if __name__ == '__main__':
     # pass
+    print("Started.")
     run()
